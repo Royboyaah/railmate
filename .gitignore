@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets
+.env
+
+# Generated data and models (rebuild with the scripts - see README)
+data/raw/
+data/*.db
+data/*.db-*
+var/
+ml/artifacts/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

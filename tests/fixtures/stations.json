@@ -1,0 +1,111 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.0,
+     28.0
+    ]
+   },
+   "properties": {
+    "code": "AAA",
+    "name": "Alpha Junction",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.4,
+     27.6
+    ]
+   },
+   "properties": {
+    "code": "BBB",
+    "name": "Bravo Halt",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.0,
+     27.0
+    ]
+   },
+   "properties": {
+    "code": "CCC",
+    "name": "Charlie Central",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.0,
+     26.0
+    ]
+   },
+   "properties": {
+    "code": "DDD",
+    "name": "Delta Junction",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     80.0,
+     25.0
+    ]
+   },
+   "properties": {
+    "code": "EEE",
+    "name": "Echo Town",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     80.6,
+     25.5
+    ]
+   },
+   "properties": {
+    "code": "FFF",
+    "name": "Foxtrot City",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "code": "GGG",
+    "name": "Golf Road",
+    "state": "Test State",
+    "zone": "NR"
+   }
+  }
+ ]
+}

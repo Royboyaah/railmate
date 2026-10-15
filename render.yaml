@@ -1,0 +1,15 @@
+# One-click deploy on Render (https://render.com) using the Dockerfile.
+# Note: the free plan has no persistent disk, so accounts and saved trips reset on each deploy/restart.
+services:
+  - type: web
+    name: railmate
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: RAILMATE_ENV
+        value: production
+      - key: RAILMATE_SECRET_KEY
+        generateValue: true
+      - key: FORWARDED_ALLOW_IPS     # trust Render's proxy so rate limiting sees real client IPs
+        value: "*"

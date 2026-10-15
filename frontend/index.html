@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RailMate - plan Indian train journeys with explainable ranking, connections and delay risk." />
+  <title>RailMate · Train Journey Planner</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <a class="brand" href="#plan" aria-label="RailMate home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="8"/><path d="M10 21h12M11 11h10v7H11z"/><circle cx="12.5" cy="24" r="1.5"/><circle cx="19.5" cy="24" r="1.5"/></svg>
+      <span>RailMate</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#plan" data-view="plan" class="nav-link">Plan</a>
+      <a href="#trips" data-view="trips" class="nav-link">My Trips <span id="tripCount" class="count" hidden></span></a>
+      <a href="#help" data-view="help" class="nav-link">Help</a>
+      <a href="#insights" data-view="insights" class="nav-link">Insights</a>
+    </nav>
+    <div class="account">
+      <button id="signInBtn" class="btn btn-ghost" type="button">Sign in</button>
+      <div id="userMenu" class="user-menu" hidden>
+        <span id="userName" class="user-name"></span>
+        <button id="signOutBtn" class="btn btn-ghost btn-sm" type="button">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ PLAN ============ -->
+    <section id="view-plan" class="view" aria-labelledby="planTitle">
+      <div class="hero">
+        <h1 id="planTitle">Find the right train, not just any train.</h1>
+        <p>Direct and connecting journeys, ranked by speed, cost, reliability and convenience. Every score is explained.</p>
+      </div>
+
+      <form id="searchForm" class="card search" novalidate>
+        <div class="field station-field">
+          <label for="fromInput">From</label>
+          <div class="combo">
+            <input id="fromInput" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false"
+                   aria-controls="fromList" autocomplete="off" placeholder="City or station code" required />
+            <ul id="fromList" role="listbox" class="suggestions" hidden></ul>
+          </div>
+        </div>
+        <button id="swapBtn" type="button" class="swap" aria-label="Swap origin and destination">⇄</button>
+        <div class="field station-field">
+          <label for="toInput">To</label>
+          <div class="combo">
+            <input id="toInput" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false"
+                   aria-controls="toList" autocomplete="off" placeholder="City or station code" required />
+            <ul id="toList" role="listbox" class="suggestions" hidden></ul>
+          </div>
+        </div>
+        <div class="field">
+          <label for="dateInput">Date</label>
+          <input id="dateInput" type="date" required />
+        </div>
+        <div class="field">
+          <label for="classSelect">Class</label>
+          <select id="classSelect"></select>
+        </div>
+
+        <fieldset class="field priority">
+          <legend>Priority</legend>
+          <div class="segmented">
+            <input type="radio" name="priority" id="p-balanced" value="balanced" checked /><label for="p-balanced">Balanced</label>
+            <input type="radio" name="priority" id="p-fastest" value="fastest" /><label for="p-fastest">Fastest</label>
+            <input type="radio" name="priority" id="p-cheapest" value="cheapest" /><label for="p-cheapest">Cheapest</label>
+            <input type="radio" name="priority" id="p-reliable" value="reliable" /><label for="p-reliable">Reliable</label>
+          </div>
+        </fieldset>
+        <label class="toggle"><input id="transfersInput" type="checkbox" checked /> Include connections</label>
+        <button class="btn btn-primary search-btn" type="submit">Search</button>
+        <p id="searchError" class="form-error" role="alert" hidden></p>
+      </form>
+
+      <details class="notice">
+        <summary>About this data</summary>
+        <p>Timetables come from the public <strong>DataMeet Indian Railways dataset</strong> (CC0), a historical snapshot from around 2016-17. Some trains, timings and station codes have changed since (for example, Mumbai CST appears as <code>CSTM</code>). Fares are <strong>estimates</strong>. The delay-risk model is trained on <strong>synthetic labels</strong>, so it is a demonstration, not a forecast. Always confirm on official channels before travelling.</p>
+      </details>
+
+      <div id="resultsBar" class="results-bar" hidden>
+        <p id="resultsSummary" aria-live="polite"></p>
+        <div class="results-controls">
+          <div class="chips" role="group" aria-label="Filter results">
+            <button type="button" class="chip active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-filter="direct" aria-pressed="false">Direct</button>
+            <button type="button" class="chip" data-filter="transfer" aria-pressed="false">With change</button>
+          </div>
+          <label class="sort">Sort
+            <select id="sortSelect">
+              <option value="score">Best match</option>
+              <option value="departure">Departure</option>
+              <option value="duration">Duration</option>
+              <option value="fare">Fare</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div id="results" class="results"></div>
+    </section>
+
+    <!-- ============ TRIPS ============ -->
+    <section id="view-trips" class="view" aria-labelledby="tripsTitle" hidden>
+      <h2 id="tripsTitle">My Trips</h2>
+      <div id="tripsList"></div>
+    </section>
+
+    <!-- ============ HELP ============ -->
+    <section id="view-help" class="view" aria-labelledby="helpTitle" hidden>
+      <h2 id="helpTitle">Help Desk</h2>
+      <div class="card chat">
+        <div id="chatLog" class="chat-log" aria-live="polite">
+          <div class="msg bot">Hi! Ask me about PNR, Tatkal, cancellations, classes, fares, or how RailMate works.</div>
+        </div>
+        <form id="chatForm" class="chat-input">
+          <label for="chatInput" class="sr-only">Your question</label>
+          <input id="chatInput" maxlength="300" placeholder="Type a question…" autocomplete="off" />
+          <button class="btn btn-primary" type="submit">Ask</button>
+        </form>
+        <p class="muted small">Popular topics</p>
+        <div id="topics" class="chips wrap"></div>
+      </div>
+    </section>
+
+    <!-- ============ INSIGHTS ============ -->
+    <section id="view-insights" class="view" aria-labelledby="insightsTitle" hidden>
+      <h2 id="insightsTitle">Insights</h2>
+      <div id="insightsBody"><div class="skeleton tall"></div></div>
+    </section>
+  </main>
+
+  <!-- ============ DIALOG ============ -->
+  <div id="dialog" class="overlay" hidden>
+    <div class="dialog card" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <button type="button" class="close" id="dialogClose" aria-label="Close">×</button>
+      <div id="dialogBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <footer class="footer">
+    <p>RailMate · open-source portfolio project · data: DataMeet (CC0) · not affiliated with Indian Railways</p>
+    <p><a href="/docs">API docs</a></p>
+  </footer>
+
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

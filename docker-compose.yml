@@ -1,0 +1,16 @@
+services:
+  railmate:
+    build: .
+    image: railmate:latest
+    ports:
+      - "8000:8000"
+    environment:
+      RAILMATE_ENV: production
+      RAILMATE_SECRET_KEY: ${RAILMATE_SECRET_KEY:?Set RAILMATE_SECRET_KEY in a .env file next to this compose file}
+      RAILMATE_RATE_LIMIT: ${RAILMATE_RATE_LIMIT:-120}
+    volumes:
+      - railmate-users:/app/var      # user accounts and saved trips survive restarts and rebuilds
+    restart: unless-stopped
+
+volumes:
+  railmate-users:

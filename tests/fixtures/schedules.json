@@ -1,0 +1,172 @@
+[
+ {
+  "id": 1001,
+  "train_number": "10001",
+  "station_code": "AAA",
+  "arrival": "None",
+  "departure": "06:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1002,
+  "train_number": "10001",
+  "station_code": "BBB",
+  "arrival": "07:00:00",
+  "departure": "07:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1003,
+  "train_number": "10001",
+  "station_code": "CCC",
+  "arrival": "08:00:00",
+  "departure": "08:05:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1004,
+  "train_number": "10001",
+  "station_code": "DDD",
+  "arrival": "10:00:00",
+  "departure": "None",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1005,
+  "train_number": "10002",
+  "station_code": "AAA",
+  "arrival": "None",
+  "departure": "23:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1006,
+  "train_number": "10002",
+  "station_code": "BBB",
+  "arrival": "None",
+  "departure": "None",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1007,
+  "train_number": "10002",
+  "station_code": "CCC",
+  "arrival": "01:00:00",
+  "departure": "01:10:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1008,
+  "train_number": "10002",
+  "station_code": "GGG",
+  "arrival": "01:05:00",
+  "departure": "01:15:00",
+  "day": 2,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1009,
+  "train_number": "10002",
+  "station_code": "EEE",
+  "arrival": "05:00:00",
+  "departure": "None",
+  "day": 2,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1010,
+  "train_number": "10003",
+  "station_code": "DDD",
+  "arrival": "None",
+  "departure": "11:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1011,
+  "train_number": "10003",
+  "station_code": "FFF",
+  "arrival": "14:00:00",
+  "departure": "None",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1012,
+  "train_number": "10004",
+  "station_code": "AAA",
+  "arrival": "None",
+  "departure": "07:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1013,
+  "train_number": "10004",
+  "station_code": "DDD",
+  "arrival": "11:00:00",
+  "departure": "None",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1014,
+  "train_number": "10005",
+  "station_code": "CCC",
+  "arrival": "None",
+  "departure": "09:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1015,
+  "train_number": "10005",
+  "station_code": "DDD",
+  "arrival": "12:00:00",
+  "departure": "None",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1016,
+  "train_number": "10006",
+  "station_code": "AAA",
+  "arrival": "None",
+  "departure": "05:00:00",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ },
+ {
+  "id": 1017,
+  "train_number": "10006",
+  "station_code": "BBB",
+  "arrival": "06:00:00",
+  "departure": "None",
+  "day": 1,
+  "train_name": "",
+  "station_name": ""
+ }
+]

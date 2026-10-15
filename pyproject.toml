@@ -1,0 +1,30 @@
+[project]
+name = "railmate"
+version = "2.0.0"
+description = "Indian train journey planner with connections, explainable ranking and a delay-risk model"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["data", "var"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM"]
+ignore = [
+    "S101",   # assert is fine in tests
+    "S311",   # random is used for synthetic data, not security
+    "B008",   # FastAPI's Depends() in defaults is idiomatic
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106", "S107"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["app", "scripts", "ml"]

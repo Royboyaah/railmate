@@ -1,0 +1,8 @@
+# Runtime dependencies (tested with the versions in comments)
+fastapi>=0.115,<1.0          # 0.143
+uvicorn[standard]>=0.30      # 0.54
+pydantic>=2.7,<3             # 2.14
+scikit-learn>=1.5,<2         # 1.8
+numpy>=1.26                  # 2.4
+joblib>=1.4                  # 1.5
+PyJWT>=2.7,<3                # 2.7
